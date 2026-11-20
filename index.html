@@ -911,15 +911,16 @@
             .services-grid, .trust-grid, .footer-grid {
                 grid-template-columns: 1fr;
             }
-                    /* Moderni ilmoitusbanneri (Badge + Teksti + Toimintonappi) */
+        /* Yläreunan moderni ilmoitus- ja kampanjapalkki */
         .smart-top-bar {
             display: none;
             width: 100%;
             padding: 10px 16px;
-            font-size: 0.93rem;
+            font-size: 0.92rem;
             font-weight: 500;
             position: relative;
             z-index: 1001;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.12);
             transition: background 0.35s ease, color 0.35s ease;
         }
 
@@ -940,15 +941,15 @@
             gap: 14px;
             flex-wrap: wrap;
             text-align: center;
-            animation: promoFadeIn 0.35s ease;
+            animation: promoSlideIn 0.35s ease;
         }
 
-        @keyframes promoFadeIn {
-            from { opacity: 0; transform: translateY(-3px); }
-            to   { opacity: 1; transform: translateY(0); }
+        @keyframes promoSlideIn {
+            from { opacity: 0; transform: translateX(18px); }
+            to   { opacity: 1; transform: translateX(0); }
         }
 
-        /* Vasemman reunan pilleri-merkki (kuten kuvan "SALE" / "UPDATE") */
+        /* Vasemman reunan pilleri-merkki (esim. AJANKOHTAISTA / TARJOUS) */
         .smart-bar-badge {
             display: inline-block;
             padding: 3px 11px;
@@ -969,35 +970,42 @@
             font-weight: 800;
         }
 
-        /* Oikean reunan pyöristetty nappi (kuten kuvan "Shop Now" / "Try Now") */
+        /* Oikean reunan pyöristetty nappi */
         .smart-bar-btn {
             display: inline-block;
             padding: 6px 16px;
             border-radius: 6px;
             text-decoration: none;
-            font-size: 0.84rem;
+            font-size: 0.82rem;
             font-weight: 800;
             letter-spacing: 0.2px;
             white-space: nowrap;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.18);
             transition: transform 0.15s, opacity 0.2s;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
         }
 
         .smart-bar-btn:hover {
             transform: translateY(-1px);
-            opacity: 0.92;
+            opacity: 0.9;
         }
 
+        /* Sivuilla olevat selausnuolet */
         .smart-bar-arrow {
-            background: none;
+            background: rgba(255, 255, 255, 0.12);
             border: none;
             color: inherit;
-            font-size: 1.4rem;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            font-size: 1.2rem;
             font-weight: 700;
             cursor: pointer;
-            padding: 0 6px;
-            opacity: 0.65;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0.8;
             line-height: 1;
+            flex-shrink: 0;
         }
 
         .smart-bar-arrow:hover {
@@ -1007,16 +1015,14 @@
         @media (max-width: 640px) {
             .smart-bar-content {
                 gap: 8px;
-                font-size: 0.86rem;
+                font-size: 0.85rem;
             }
             .smart-bar-btn {
                 padding: 5px 12px;
-                font-size: 0.8rem;
+                font-size: 0.78rem;
             }
         }
-
-        }
-    </style>
+</style>
 </head>
 <body>
     <div id="smartTopBar" class="smart-top-bar"></div>
