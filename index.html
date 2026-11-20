@@ -135,7 +135,35 @@
             list-style: none;
             gap: 32px;
             align-items: center;
+        }        @media (max-width: 768px) {
+            .mobile-toggle {
+                display: block;
+                color: var(--white);
+            }
+            nav ul {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 110px; /* Aukeaa täsmälleen headerin alareunasta */
+                left: 0;
+                right: 0;
+                background-color: #212224; /* Sama tumma tausta kuin headerissa */
+                padding: 24px 20px;
+                gap: 18px;
+                border-bottom: 4px solid var(--meko-yellow);
+                box-shadow: 0 12px 25px rgba(0, 0, 0, 0.35);
+            }
+            nav ul.open {
+                display: flex;
+            }
+            .hero h1 {
+                font-size: 2.1rem;
+            }
+            .services-grid, .trust-grid, .footer-grid {
+                grid-template-columns: 1fr;
+            }
         }
+
 
         nav a {
             text-decoration: none;
