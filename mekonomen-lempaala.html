@@ -1,0 +1,1479 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://googleapis.com" rel="stylesheet">
+    <link rel="preconnect" href="https://googleapis.com">
+    <link rel="preconnect" href="https://googleapis.com">
+<link rel="preconnect" href="https://gstatic.com" crossorigin>
+<link href="https://googleapis.com/css2?family=Zilla+Slab:wght@700&display=swap" rel="stylesheet">
+
+<link rel="preconnect" href="https://gstatic.com" crossorigin>
+<link href="https://googleapis.com/css2?family=Roboto+Slab:wght@700;900&display=swap" rel="stylesheet">
+    <title>Mekonomen Autohuolto Lempäälä | Garage Brothers Oy</title>
+    <style>
+        :root {
+            --meko-yellow: #FFED00;
+            --meko-yellow-hover: #E6CE00;
+            --meko-black: #111111;
+            --meko-dark: #222222;
+            --meko-gray-bg: #F4F4F4;
+            --meko-gray-border: #E0E0E0;
+            --meko-text: #1A1A1A;
+            --meko-text-muted: #555555;
+            --white: #FFFFFF;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 130px;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            color: var(--meko-text);
+            background-color: var(--white);
+            line-height: 1.6;
+        }
+
+        .top-bar {
+            background-color: var(--meko-black);
+            color: var(--white);
+            font-size: 0.85rem;
+            padding: 8px 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .top-bar-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .top-bar-highlights {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .top-bar-highlights span::before {
+            content: "✓ ";
+            color: var(--meko-yellow);
+            font-weight: bold;
+        }
+
+        .top-bar-contact a {
+            color: var(--meko-yellow);
+            text-decoration: none;
+            font-weight: 700;
+        }
+
+        header {
+            background-color: #212224;
+            border-bottom: 1px solid #212224;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+        }
+
+        .nav-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 110px;
+        }
+
+        .brand-logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            gap: 16px;
+        }
+
+        .brand-logo img {
+            height: 80px;
+            width: auto;
+            border-radius: 4px;
+            display: block;
+        }
+
+        .logo-sub {
+            display: flex;
+            flex-direction: column;
+            line-height: 1.25;
+        }
+
+        .logo-sub strong {
+            color: var(--white);
+            font-size: 1.2rem;
+            font-weight: 800;
+        }
+
+        .logo-sub span {
+            color: #CCCCCC;
+            font-size: 0.95rem;
+            font-weight: 600;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 32px;
+            align-items: center;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--meko-gray-bg);
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: color 0.2s;
+        }
+
+        nav a:hover {
+            color: var(--meko-yellow);
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--meko-yellow);
+            color: var(--meko-black);
+            font-weight: 800;
+            padding: 15px 28px;
+            border-radius: 4px;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1.05rem;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+            transition: background-color 0.2s, transform 0.1s;
+        }
+
+        .btn:hover {
+            background-color: var(--meko-black);
+            color: var(--meko-yellow)
+        }
+
+        .btn:active {
+            transform: translateY(1px);
+        }
+
+        .btn-dark {
+            background-color: var(--meko-black);
+            color: var(--white);
+        }
+
+        .btn-dark:hover {
+            background-color: #333333;
+        }
+
+        .mobile-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.8rem;
+            cursor: pointer;
+            color: var(--white);
+        }
+
+        .hero {
+            background: linear-gradient(90deg, rgba(17, 17, 17, 0.90) 0%, rgba(17, 17, 17, 0.65) 55%, rgba(17, 17, 17, 0.35) 100%),
+                        url('https://www.mekonomen.fi/wp-content/uploads/sites/2/2026/10/korjaamo_1170x450.jpg');
+            background-size: cover;
+            background-position: center;
+            color: var(--white);
+            padding: 85px 0;
+        }
+
+        .open-status-bar {
+            display: inline-flex;
+            align-items: center;
+            font-size: 0.95rem;
+            font-weight: 800;
+            letter-spacing: 0.5px;
+            margin-bottom: 16px;
+            text-transform: uppercase;
+        }
+
+        .open-status-label {
+            color: var(--meko-yellow);
+            padding-right: 12px;
+            border-right: 2px solid rgba(255, 255, 255, 0.5);
+        }
+
+        .open-status-hours {
+            color: var(--white);
+            padding-left: 12px;
+            font-weight: 600;
+        }
+
+        .hero-content {
+            max-width: 780px;
+        }
+
+        .meko-hero-title {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            margin-bottom: 22px;
+        }
+
+        .meko-title-black {
+            background-color: #111111;
+            color: #FFFFFF;
+            font-family: 'Roboto Slab', 'Arvo', 'Rockwell', Georgia, serif;
+      font-family: 'Museo Slab', 'Zilla Slab', 'Rockwell', Georgia, serif;
+    font-size: 2.7rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+    padding: 10px 22px;
+    display: inline-block;
+}
+        .meko-title-yellow {
+            background-color: var(--meko-yellow);
+            color: #111111;
+            font-family: 'Roboto Slab', 'Arvo', 'Rockwell', Georgia, serif;
+      font-family: 'Museo Slab', 'Zilla Slab', 'Rockwell', Georgia, serif;
+    font-size: 2.7rem;
+    font-weight: 700;
+    letter-spacing: -0.02em; 
+    line-height: 1.15;
+    padding: 10px 22px;
+    display: inline-block;
+}
+
+        .hero p {
+            font-size: 1.05rem;
+            color: #F0F0F0;
+            margin-bottom: 28px;
+            max-width: 650px;
+            line-height: 1.55;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .hero-buttons .btn {
+            min-width: 210px;
+            text-align: center;
+        }
+
+        .hero-buttons .btn-dark {
+            border: 1px solid rgba(255, 255, 255, 0.25);
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 700;
+            font-size: 0.85rem;
+            margin-bottom: 5px;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #CCCCCC;
+            border-radius: 4px;
+            font-family: inherit;
+            font-size: 0.95rem;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--meko-black);
+        }
+
+        @media (max-width: 768px) {
+            .meko-title-black,
+            .meko-title-yellow {
+                font-size: 1.85rem;
+                padding: 8px 16px;
+            }
+        }
+
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--meko-black);
+        }
+
+        .trust-section {
+            background-color: var(--meko-gray-bg);
+            padding: 35px 0;
+            border-bottom: 1px solid var(--meko-gray-border);
+        }
+
+        .trust-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+        }
+
+        .trust-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+        }
+
+        .trust-icon {
+            background-color: var(--meko-yellow);
+            color: var(--meko-black);
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 900;
+            font-size: 1.1rem;
+            flex-shrink: 0;
+        }
+
+        .trust-item h3 {
+            font-size: 1rem;
+            font-weight: 800;
+            margin-bottom: 4px;
+        }
+
+        .trust-item p {
+            font-size: 0.85rem;
+            color: var(--meko-text-muted);
+        }
+
+        section {
+            padding: 70px 0;
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 48px;
+        }
+
+        .section-header h2 {
+            font-size: 2.1rem;
+            font-weight: 900;
+            margin-bottom: 12px;
+            color: var(--meko-black);
+        }
+
+        .section-header p {
+            color: var(--meko-text-muted);
+            font-size: 1.05rem;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .service-card {
+            background: var(--white);
+            border: 1px solid var(--meko-gray-border);
+            border-radius: 6px;
+            padding: 28px;
+            transition: transform 0.2s, box-shadow 0.2s;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .service-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+            border-color: var(--meko-black);
+        }
+
+        .service-card h3 {
+            font-size: 1.25rem;
+            font-weight: 800;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .service-card p {
+            color: var(--meko-text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 20px;
+        }
+
+        .service-price {
+            font-weight: 800;
+            color: var(--meko-black);
+            background-color: var(--meko-gray-bg);
+            padding: 6px 12px;
+            border-radius: 4px;
+            display: inline-block;
+            font-size: 0.9rem;
+            margin-bottom: 16px;
+        }
+
+        .service-link {
+            color: var(--meko-black);
+            font-weight: 800;
+            text-decoration: none;
+            font-size: 0.9rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .service-link:hover {
+            text-decoration: underline;
+        }
+
+        .finance-banner {
+            background-color: var(--meko-black);
+            color: var(--white);
+            border-radius: 8px;
+            padding: 45px;
+            display: grid;
+            grid-template-columns: 1.5fr 1fr;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .finance-banner h2 {
+            font-size: 1.9rem;
+            font-weight: 900;
+            margin-bottom: 12px;
+        }
+
+        .finance-banner h2 span {
+            color: var(--meko-yellow);
+        }
+
+        .finance-banner p {
+            color: #DDDDDD;
+            margin-bottom: 20px;
+        }
+
+        .finance-box {
+            background-color: var(--meko-dark);
+            padding: 25px;
+            border-radius: 6px;
+            border-left: 4px solid var(--meko-yellow);
+        }
+
+        .finance-box ul {
+            list-style: none;
+        }
+
+        .finance-box li {
+            margin-bottom: 10px;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .finance-box li::before {
+            content: "✓ ";
+            color: var(--meko-yellow);
+            font-weight: 900;
+        }
+
+                /* Viimeistelty Mekonomen-yhteystietokortti */
+        .meko-contact-section {
+            padding: 85px 0 75px 0;
+            background-color: var(--white);
+        }
+
+        .meko-yellow-wrapper {
+            background-color: #FFE500;
+            color: #111111;
+            position: relative;
+            max-width: 940px;
+            margin: 0 auto;
+            padding: 38px 46px 42px 46px;
+            display: grid;
+            grid-template-columns: 1.05fr 0.95fr;
+            gap: 44px;
+            align-items: stretch;
+            box-shadow: 0 14px 35px rgba(0, 0, 0, 0.08);
+        }
+
+        .meko-black-header-box {
+            background-color: #111111;
+            color: #FFFFFF;
+            font-family: 'Museo Slab', 'Zilla Slab', 'Rockwell', Georgia, serif;
+            font-size: 2.2rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            line-height: 1.15;
+            padding: 22px 30px;
+            margin-top: -70px;
+            margin-left: -66px;
+            margin-bottom: 26px;
+            display: inline-block;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.16);
+        }
+
+        .meko-info-list {
+            padding-left: 4px;
+        }
+
+        .meko-info-block {
+            margin-bottom: 16px;
+            font-size: 0.98rem;
+            line-height: 1.45;
+        }
+
+        .meko-info-block strong {
+            display: block;
+            font-weight: 800;
+            margin-bottom: 2px;
+            color: #111111;
+        }
+
+        .meko-info-block a {
+            color: #111111;
+            text-decoration: underline;
+            font-weight: 600;
+        }
+
+        .meko-info-block a:hover {
+            opacity: 0.7;
+        }
+
+        .meko-socials {
+            display: flex;
+            gap: 10px;
+            margin-top: 22px;
+        }
+
+        .meko-social-circle {
+            width: 38px;
+            height: 38px;
+            background-color: #111111;
+            color: #FFFFFF;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: transform 0.15s, opacity 0.15s;
+        }
+
+        .meko-social-circle:hover {
+            transform: translateY(-2px);
+            opacity: 0.85;
+        }
+
+        /* Oikea sarake: Puhdas tekstilogo ylhäällä + tiivis sisältö ja napit */
+        .meko-right-col {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding-top: 4px;
+        }
+
+        .meko-right-brand {
+            align-self: flex-end;
+            text-align: right;
+            line-height: 1.05;
+            margin-bottom: 24px;
+        }
+
+        .meko-right-brand strong {
+            display: block;
+            font-family: 'Museo Slab', 'Zilla Slab', 'Rockwell', Georgia, serif;
+            font-size: 1.55rem;
+            font-weight: 700;
+            color: #111111;
+            letter-spacing: -0.02em;
+        }
+
+        .meko-right-brand span {
+            display: block;
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: #111111;
+        }
+
+        .meko-right-col h3 {
+            font-family: 'Museo Slab', 'Zilla Slab', 'Rockwell', Georgia, serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: #111111;
+            line-height: 1.2;
+        }
+
+        .meko-right-col p {
+            font-size: 0.95rem;
+            color: #111111;
+            margin-bottom: 16px;
+            line-height: 1.55;
+        }
+
+        .meko-mini-perks {
+            list-style: none;
+            margin-bottom: 22px;
+            font-size: 0.92rem;
+            font-weight: 700;
+        }
+
+        .meko-mini-perks li {
+            margin-bottom: 5px;
+        }
+
+        .meko-mini-perks li::before {
+            content: "✓ ";
+            font-weight: 900;
+        }
+
+        .meko-action-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .btn-meko-solid {
+            display: block;
+            width: 100%;
+            background-color: #111111;
+            color: #FFFFFF;
+            font-weight: 800;
+            padding: 15px 20px;
+            border-radius: 4px;
+            text-decoration: none;
+            text-align: center;
+            font-size: 0.96rem;
+            text-transform: uppercase;
+            letter-spacing: 0.4px;
+            transition: background-color 0.2s, transform 0.1s;
+        }
+
+        .btn-meko-solid:hover {
+            background-color: #2C2C2C;
+        }
+
+        .btn-meko-outline {
+            display: block;
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.35);
+            color: #111111;
+            border: 2px solid #111111;
+            font-weight: 800;
+            padding: 13px 20px;
+            border-radius: 4px;
+            text-decoration: none;
+            text-align: center;
+            font-size: 0.94rem;
+            text-transform: uppercase;
+            letter-spacing: 0.4px;
+            transition: background-color 0.2s, color 0.2s;
+        }
+
+        .btn-meko-outline:hover {
+            background-color: #111111;
+            color: #FFFFFF;
+        }
+
+        @media (max-width: 860px) {
+            .meko-yellow-wrapper {
+                grid-template-columns: 1fr;
+                padding: 28px 22px;
+                gap: 28px;
+            }
+            .meko-black-header-box {
+                margin-top: -54px;
+                margin-left: -10px;
+                font-size: 1.85rem;
+                padding: 16px 22px;
+            }
+            .meko-right-col {
+                border-top: 2px solid rgba(17, 17, 17, 0.15);
+                padding-top: 24px;
+            }
+            .meko-right-brand {
+                display: none;
+            }
+        }
+
+
+              footer {
+            background-color: #161718;
+            color: #CCCCCC;
+            padding: 65px 0 28px 0;
+            border-top: 4px solid var(--meko-yellow);
+            font-size: 0.95rem;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1.4fr 1fr 1fr 1.2fr;
+            gap: 36px;
+            margin-bottom: 45px;
+        }
+
+        .footer-brand-title {
+            font-family: 'Museo Slab', 'Zilla Slab', 'Rockwell', Georgia, serif;
+            color: var(--meko-yellow);
+            font-size: 1.65rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            line-height: 1.1;
+            margin-bottom: 4px;
+        }
+
+        .footer-brand-sub {
+            color: var(--white);
+            font-weight: 700;
+            font-size: 0.95rem;
+            margin-bottom: 14px;
+            display: block;
+        }
+
+        footer h4 {
+            font-family: 'Museo Slab', 'Zilla Slab', 'Rockwell', Georgia, serif;
+            color: var(--meko-yellow);
+            font-size: 1.15rem;
+            font-weight: 700;
+            letter-spacing: -0.01em;
+            margin-bottom: 16px;
+        }
+
+        footer ul {
+            list-style: none;
+        }
+
+        footer ul li {
+            margin-bottom: 9px;
+            line-height: 1.45;
+        }
+
+        footer a {
+            color: #CCCCCC;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        footer a:hover {
+            color: var(--meko-yellow);
+        }
+
+        .footer-socials {
+            display: flex;
+            gap: 10px;
+            margin-top: 18px;
+        }
+
+        .footer-social-icon {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background-color: #2A2B2D;
+            color: var(--meko-yellow);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.2s, color 0.2s, transform 0.15s;
+        }
+
+        .footer-social-icon:hover {
+            background-color: var(--meko-yellow);
+            color: #111111;
+            transform: translateY(-2px);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.12);
+            padding-top: 22px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            font-size: 0.88rem;
+            color: #999999;
+        }
+
+        @media (max-width: 960px) {
+            .footer-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.7);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: var(--white);
+            max-width: 500px;
+            width: 100%;
+            padding: 30px;
+            border-radius: 6px;
+            border-top: 6px solid var(--meko-yellow);
+            position: relative;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 15px;
+            right: 18px;
+            background: none;
+            border: none;
+            font-size: 1.6rem;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .alert-success {
+            background-color: #E8F5E9;
+            border-left: 4px solid #2E7D32;
+            color: #1B5E20;
+            padding: 15px;
+            border-radius: 4px;
+            margin-top: 15px;
+            display: none;
+            font-weight: 600;
+        }
+
+        @media (max-width: 960px) {
+            .hero-grid, .contact-grid, .finance-banner {
+                grid-template-columns: 1fr;
+            }
+            .trust-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .mobile-toggle {
+                display: block;
+            }
+            nav ul {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 80px;
+                left: 0;
+                right: 0;
+                background: var(--white);
+                padding: 20px;
+                border-bottom: 3px solid var(--meko-yellow);
+                box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            }
+            nav ul.open {
+                display: flex;
+            }
+            .hero h1 {
+                font-size: 2.1rem;
+            }
+            .services-grid, .trust-grid, .footer-grid {
+                grid-template-columns: 1fr;
+            }
+                    /* Moderni ilmoitusbanneri (Badge + Teksti + Toimintonappi) */
+        .smart-top-bar {
+            display: none;
+            width: 100%;
+            padding: 10px 16px;
+            font-size: 0.93rem;
+            font-weight: 500;
+            position: relative;
+            z-index: 1001;
+            transition: background 0.35s ease, color 0.35s ease;
+        }
+
+        .smart-bar-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+        }
+
+        .smart-bar-content {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 14px;
+            flex-wrap: wrap;
+            text-align: center;
+            animation: promoFadeIn 0.35s ease;
+        }
+
+        @keyframes promoFadeIn {
+            from { opacity: 0; transform: translateY(-3px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Vasemman reunan pilleri-merkki (kuten kuvan "SALE" / "UPDATE") */
+        .smart-bar-badge {
+            display: inline-block;
+            padding: 3px 11px;
+            border-radius: 999px;
+            font-size: 0.72rem;
+            font-weight: 900;
+            letter-spacing: 0.6px;
+            text-transform: uppercase;
+            white-space: nowrap;
+        }
+
+        .smart-bar-text {
+            line-height: 1.4;
+        }
+
+        .smart-bar-text b,
+        .smart-bar-text strong {
+            font-weight: 800;
+        }
+
+        /* Oikean reunan pyöristetty nappi (kuten kuvan "Shop Now" / "Try Now") */
+        .smart-bar-btn {
+            display: inline-block;
+            padding: 6px 16px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-size: 0.84rem;
+            font-weight: 800;
+            letter-spacing: 0.2px;
+            white-space: nowrap;
+            transition: transform 0.15s, opacity 0.2s;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+        }
+
+        .smart-bar-btn:hover {
+            transform: translateY(-1px);
+            opacity: 0.92;
+        }
+
+        .smart-bar-arrow {
+            background: none;
+            border: none;
+            color: inherit;
+            font-size: 1.4rem;
+            font-weight: 700;
+            cursor: pointer;
+            padding: 0 6px;
+            opacity: 0.65;
+            line-height: 1;
+        }
+
+        .smart-bar-arrow:hover {
+            opacity: 1;
+        }
+
+        @media (max-width: 640px) {
+            .smart-bar-content {
+                gap: 8px;
+                font-size: 0.86rem;
+            }
+            .smart-bar-btn {
+                padding: 5px 12px;
+                font-size: 0.8rem;
+            }
+        }
+
+        }
+    </style>
+</head>
+<body>
+    <div id="smartTopBar" class="smart-top-bar"></div>
+
+    <div class="top-bar">
+        <div class="container top-bar-inner">
+            <div class="top-bar-highlights">
+                <span>Varaosilla 3 vuoden takuu</span>
+                <span>Uuden auton takuu säilyy</span>
+                <span>Kaikki automerkit</span>
+            </div>
+            <div class="top-bar-contact">
+    Soita / WhatsApp: <a href="https://wa.me/358504768769" target="_blank" rel="noopener">050 476 8769</a>
+     </div>
+        </div>
+    </div>
+
+   <header>
+  <div class="container nav-inner">
+    <a href="#" class="brand-logo" style="display: flex; flex-direction: column; align-items: flex-start; gap: 0; text-decoration: none;">
+      <img src="https://www.mekonomen.fi/wp-content/uploads/sites/2/2026/10/mekonomen-logo-padding.svg" alt="Mekonomen" style="height: 58px; width: auto; display: block;">
+      <span style="color: #FFE500; font-family: 'Rockwell', 'Roboto Slab', 'Courier New', Georgia, serif; font-size: 19px; font-weight: 900; line-height: 1; letter-spacing: -0.5px; margin-top: -10px; padding-left: 4px;">
+        Lempäälä
+      </span>
+    </a>
+
+
+            <button class="mobile-toggle" id="mobileToggle" aria-label="Avaa valikko">☰</button>
+
+            <nav>
+                <ul id="navMenu">
+                    <li><a href="#palvelut">Palvelut</a></li>
+                    <li><a href="#rahoitus">Rahoitus</a></li>
+                    <li><a href="#yritys">Tietoa meistä</a></li>
+                    <li><a href="#yhteystiedot">Yhteystiedot</a></li>
+                    <li><a href="https://www.mekonomen.fi/varaa-huolto/" target="_blank" class="btn">Varaa huolto</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+          <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="open-status-bar">
+                    <span class="open-status-label" id="open-label">AUKI TÄNÄÄN</span>
+                    <span class="open-status-hours" id="open-hours">08:00 - 16:00</span>
+                </div>
+
+                <h1 class="meko-hero-title">
+                    <span class="meko-title-black">Pohjoismaiden parasta</span>
+                    <span class="meko-title-yellow">autohuoltoa Lempäälässä</span>
+                </h1>
+
+                <p>Mekonomen Lempäälä (Garage Brothers Oy) huoltaa ja korjaa autosi valmistajan ohjeiden mukaisesti. Käytämme alkuperäislaatuisia varaosia ja myönnämme niille 3 vuoden takuun.</p>
+                
+                <div class="hero-buttons">
+                    <a href="https://mekonomen.fi/varaa-huolto" target="_blank" rel="noopener noreferrer" class="btn">Varaa huolto</a>
+                    <a href="https://wa.me/358504768769" target="_blank" rel="noopener noreferrer" class="btn btn-dark">Soita / WhatsApp 050 476 8769</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <div class="trust-section">
+        <div class="container trust-grid">
+            <div class="trust-item">
+                <div class="trust-icon">3V</div>
+                <div>
+                    <h3>3 vuoden takuu</h3>
+                    <p>Myönnämme kaikille asentamillemme varaosille 3 vuoden takuun.</p>
+                </div>
+            </div>
+            <div class="trust-item">
+                <div class="trust-icon">✓</div>
+                <div>
+                    <h3>Takuu säilyy</h3>
+                    <p>Huollamme myös uudet autot valmistajan huolto-ohjelman mukaisesti.</p>
+                </div>
+            </div>
+            <div class="trust-item">
+                <div class="trust-icon">HK</div>
+                <div>
+                    <h3>Sähköinen huoltokirja</h3>
+                    <p>Kirjaamme huollot suoraan auton valmistajan sähköiseen järjestelmään.</p>
+                </div>
+            </div>
+            <div class="trust-item">
+                <div class="trust-icon">0%</div>
+                <div>
+                    <h3>Joustava rahoitus</h3>
+                    <p>Mekonomen-tilillä jopa 12 kk korotonta maksuaikaa huolloille.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+        <section id="palvelut">
+        <div class="container">
+            <div class="section-header">
+                <h2>Huolto- ja korjaamopalvelut</h2>
+                <p>Huollamme ja korjaamme kaikki automerkit ja mallit – myös sähkö- ja hybridiautot – aina autonvalmistajan huolto-ohjelman mukaisesti.</p>
+            </div>
+
+            <div class="services-grid">
+                <div class="service-card">
+                    <div>
+                        <h3>Määräaikaishuollot</h3>
+                        <p>Autonvalmistajan huolto-ohjelman mukaiset määräaikaishuollot kaikille merkeille. Uuden autosi tehdastakuu säilyy ja kirjaamme huollot sähköiseen huoltokirjaan.</p>
+                    </div>
+                    <div>
+                        <div class="service-price">Hinta-arvio ja vapaat ajat verkossa</div><br>
+                        <a href="https://mekonomen.fi/varaa-huolto/" target="_blank" rel="noopener noreferrer" class="service-link">Varaa huolto →</a>
+                    </div>
+                </div>
+
+                <div class="service-card">
+                    <div>
+                        <h3>Öljynvaihtohuolto</h3>
+                        <p>Moottoriöljyn ja öljynsuodattimen vaihto laadukkailla, autonvalmistajan luokitukset täyttävillä öljyillä sekä huoltovälinäytön nollaus.</p>
+                    </div>
+                    <div>
+                        <div class="service-price">Alkaen 120 €</div><br>
+                        <a href="https://mekonomen.fi/varaa-huolto/" target="_blank" rel="noopener noreferrer" class="service-link">Varaa aika →</a>
+                    </div>
+                </div>
+
+                <div class="service-card">
+                    <div>
+                        <h3>Ilmastointihuolto</h3>
+                        <p>Ilmastointilaitteen kylmäaineen täyttö, järjestelmän tiiveystarkastus, kompressoriöljyn lisäys ja puhdistus (R134a ja R1234yf).</p>
+                    </div>
+                    <div>
+                        <div class="service-price">Kysy päivän hinta</div><br>
+                        <a href="https://mekonomen.fi/varaa-huolto/" target="_blank" rel="noopener noreferrer" class="service-link">Varaa aika →</a>
+                    </div>
+                </div>
+
+                <div class="service-card">
+                    <div>
+                        <h3>Jarrutyöt ja alusta</h3>
+                        <p>Jarrupalojen ja -levyjen vaihdot, jarrunesteiden vaihto sekä ohjausnivelten, iskunvaimentimien ja jousien korjaukset.</p>
+                    </div>
+                    <div>
+                        <div class="service-price">Alkuperäislaatuiset osat (3 v takuu)</div><br>
+                        <a href="https://mekonomen.fi/varaa-huolto/" target="_blank" rel="noopener noreferrer" class="service-link">Varaa huolto →</a>
+                    </div>
+                </div>
+
+                <div class="service-card">
+                    <div>
+                        <h3>Rengaspalvelut &amp; Rengashotelli</h3>
+                        <p>Renkaiden kausivaihdot, tasapainotukset, uusien renkaiden myynti ja asennus sekä vaivaton rengashotelli.</p>
+                    </div>
+                    <div>
+                        <div class="service-price">Kysy kausipakettia</div><br>
+                        <a href="https://mekonomen.fi/varaa-huolto/" target="_blank" rel="noopener noreferrer" class="service-link">Varaa renkaanvaihto →</a>
+                    </div>
+                </div>
+
+                <div class="service-card">
+                    <div>
+                        <h3>Vianetsintä &amp; Korjaukset</h3>
+                        <p>Nykyaikainen vikadiagnostiikka, akkutestit, jakopäänhuollot, kytkinremontit sekä muut vaativat mekaaniset ja sähköiset korjaukset.</p>
+                    </div>
+                    <div>
+                        <div class="service-price">Kaikki automerkit ja käyttövoimat</div><br>
+                        <a href="https://mekonomen.fi/varaa-huolto/" target="_blank" rel="noopener noreferrer" class="service-link">Varaa aika →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section id="rahoitus" style="padding-top: 0;">
+        <div class="container">
+            <div class="finance-banner">
+                <div>
+                    <h2>Maksa huolto joustavasti – <span>jopa 12 kk korotonta maksuaikaa</span></h2>
+                    <p>Yllättikö auton korjaustarve? Mekonomen-tilin avulla voit jakaa huolto- ja korjauskulut sinulle sopiviin kuukausieriin yhteistyössä Resurs Bankin kanssa.</p>
+                    <a href="https://www.mekonomen.fi/mekonomen-rahoitus/" target="_blank" rel="noopener noreferrer" class="btn">Lue lisää rahoituksesta</a>
+                    <ul>
+                        <li>30–60 päivää korotonta ja kulutonta maksuaikaa</li>
+                        <li>Mahdollisuus valita jopa 12 kk koroton osamaksu</li>
+                        <li>Päätös nopeasti suoraan korjaamolla</li>
+                        <li>Ei vaadi käsirahaa</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+           <section id="yhteystiedot" class="meko-contact-section">
+        <div class="container" id="yritys">
+            <div class="meko-yellow-wrapper">
+                
+                <!-- Vasen sarake -->
+                <div>
+                    <h2 class="meko-black-header-box">
+                        Mekonomen<br>
+                        Autohuolto<br>
+                        Lempäälä
+                    </h2>
+
+                    <div class="meko-info-list">
+                        <div class="meko-info-block">
+                            <strong>Osoite</strong>
+                            Ruokosmetsänkatu 13 A, 37570 Lempäälä<br>
+                            <a href="https://www.google.com/maps/dir/?api=1&destination=Ruokosmets%C3%A4nkatu%2013%20A%2C%2037570%20Lemp%C3%A4%C3%A4l%C3%A4" target="_blank" rel="noopener noreferrer">Sijainti kartalla &raquo;</a>
+                        </div>
+
+                        <div class="meko-info-block">
+                            <strong>Puhelin / WhatsApp</strong>
+                            <a href="tel:+358504768769">050 476 8769</a> tai <a href="https://wa.me/0504768769" target="_blank" rel="noopener noreferrer">WhatsApp-viesti &raquo;</a>
+                        </div>
+
+                        <div class="meko-info-block">
+                            <strong>Sähköposti</strong>
+                            <a href="mailto:huolto@garagebrothers.info">huolto@garagebrothers.info</a>
+                        </div>
+
+                        <div class="meko-info-block" style="margin-bottom: 0;">
+                            <strong>Avoinna</strong>
+                            ma – to 08.30–16.30 &nbsp;|&nbsp; pe 08.00–16.00 &nbsp;|&nbsp; la – su Suljettu<br>
+                            <span style="font-size: 0.86rem; opacity: 0.8;">Garage Brothers Oy • Y-tunnus: 3253828-6</span>
+                        </div>
+
+                        <div class="meko-socials">
+                            <a href="https://www.facebook.com/100083184347641" target="_blank" rel="noopener noreferrer" class="meko-social-circle" aria-label="Facebook">
+                                <svg width="17" height="17" fill="currentColor" viewBox="0 0 24 24"><path d="M14 13.5h2.5l1-4H14v-2c0-1.03 0-2 2-2h1.5V2.14c-.326-.043-1.557-.14-2.857-.14C11.928 2 10 3.657 10 6.7v2.8H7v4h3V22h4v-8.5z"/></svg>
+                            </a>
+                            <a href="https://instagram.com/garagebrothers2022" target="_blank" rel="noopener noreferrer" class="meko-social-circle" aria-label="Instagram">
+                                <svg width="17" height="17" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Oikea sarake -->
+            <div class="meko-right-col">
+    <div class="meko-right-brand" style="margin-bottom: 14px;">
+        <img src="https://i.postimg.cc/3JKNvyhG/Pixel-Bin-AI-Image-Editor-1795175594133.png" alt="Garage Brothers Oy" style="height: 110px; width: auto; display: block; mix-blend-mode: multiply;">
+    </div>
+
+                    <div>
+                        <h3>Tervetuloa huoltoon Lempäälään</h3>
+                        <p>Korjaamomme sijaitsee Ruokosmetsän yritysalueella hyvien kulkuyhteyksien varrella.</p>
+
+                        <ul class="meko-mini-perks">
+                            <li>Runsaasti maksutonta pysäköintitilaa pihassa</li>
+                            <li>Alkuperäislaatuiset varaosat 3 vuoden takuulla</li>
+                            <li>Sähköisen huoltokirjan merkinnät</li>
+                        </ul>
+
+                        <div class="meko-action-buttons">
+                            <a href="https://mekonomen.fi/varaa-huolto" target="_blank" rel="noopener noreferrer" class="btn-meko-solid">Varaa huoltoaika verkossa &rarr;</a>
+                            <a href="https://wa.me/0504768769" target="_blank" rel="noopener noreferrer" class="btn-meko-outline">Soita / WhatsApp 050 476 8769</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+
+
+        <footer>
+        <div class="container">
+            <div class="footer-grid">
+                
+                <!-- Sarake 1: Yritysesittely + Somet -->
+                <div>
+                    <div class="footer-brand-title">Mekonomen</div>
+                    <span class="footer-brand-sub">Autohuolto Lempäälä • Garage Brothers Oy</span>
+                    <p style="line-height: 1.6; color: #BBBBBB;">Kuulumme Pohjoismaiden suurimpaan autokorjaamoketjuun. Huollamme ja korjaamme kaikki automerkit ammattitaidolla sekä 3 vuoden varaosatakuulla.</p>
+                    
+                    <div class="footer-socials">
+                        <a href="https://www.facebook.com/100083184347641" target="_blank" rel="noopener noreferrer" class="footer-social-icon" aria-label="Facebook">
+                            <svg width="17" height="17" fill="currentColor" viewBox="0 0 24 24"><path d="M14 13.5h2.5l1-4H14v-2c0-1.03 0-2 2-2h1.5V2.14c-.326-.043-1.557-.14-2.857-.14C11.928 2 10 3.657 10 6.7v2.8H7v4h3V22h4v-8.5z"/></svg>
+                        </a>
+                        <a href="https://www.instagram.com/garagebrothers2022/" target="_blank" rel="noopener noreferrer" class="footer-social-icon" aria-label="Instagram">
+                            <svg width="17" height="17" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Sarake 2: Sivuston linkit & Ajanvaraus -->
+                <div>
+                    <h4>Valikko</h4>
+                    <ul>
+                        <li><a href="#">Etusivu</a></li>
+                        <li><a href="#palvelut">Huolto- ja korjaamopalvelut</a></li>
+                        <li><a href="#rahoitus">Mekonomen Rahoitus</a></li>
+                        <li><a href="#yritys">Tietoa meistä</a></li>
+                        <li><a href="#yhteystiedot">Yhteystiedot ja aukioloajat</a></li>
+                        <li><a href="https://mekonomen.fi/varaa-huolto" target="_blank" rel="noopener noreferrer" style="color: var(--meko-yellow); font-weight: 700;">Varaa huolto verkossa &rarr;</a></li>
+                    </ul>
+                </div>
+
+                <!-- Sarake 3: Palvelut -->
+                <div>
+                    <h4>Palvelut</h4>
+                    <ul>
+                        <li><a href="#palvelut" target="_blank" rel="noopener noreferrer">Määräaikaishuollot</a></li>
+                        <li><a href="#palvelut" target="_blank" rel="noopener noreferrer">Öljynvaihtohuollot</a></li>
+                        <li><a href="#palvelut" target="_blank" rel="noopener noreferrer">Ilmastointihuollot</a></li>
+                        <li><a href="#palvelut" target="_blank" rel="noopener noreferrer">Jarru- ja alustatyöt</a></li>
+                        <li><a href="#palvelut" target="_blank" rel="noopener noreferrer">Rengashotelli ja rengastyöt</a></li>
+                        <li><a href="#palvelut" target="_blank" rel="noopener noreferrer">Vianetsintä ja diagnostiikka</a></li>
+                    </ul>
+                </div>
+
+                <!-- Sarake 4: Yhteystiedot -->
+                <div>
+                    <h4>Yhteystiedot</h4>
+                    <ul>
+                        <li><strong style="color: var(--white);">Garage Brothers Oy</strong></li>
+                        <li><a href="https://www.google.com/maps/dir/?api=1&destination=Ruokosmets%C3%A4nkatu%2013%20A%2C%2037570%20Lemp%C3%A4%C3%A4l%C3%A4" target="_blank" rel="noopener noreferrer">Ruokosmetsänkatu 13 A, 37570 Lempäälä</a></li>
+                        <li>Puh: <a href="tel:+358504768769">050 476 8769</a> (<a href="https://wa.me/0504768769" target="_blank" rel="noopener noreferrer">WhatsApp</a>)</li>
+                        <li>Sähköposti: <a href="mailto:huolto@garagebrothers.info">huolto@garagebrothers.info</a></li>
+                        <li>Avoinna: ma–to 8.30–16.30, pe 8.00–16.00</li>
+                        <li>Y-tunnus: 3253828-6</li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <div class="footer-bottom">
+                <span>&copy; <span id="year"></span> Garage Brothers Oy | Mekonomen Autohuolto Lempäälä</span>
+                <span>Varaosilla 3 vuoden takuu • Uuden auton tehdastakuu säilyy</span>
+            </div>
+        </div>
+    </footer>
+    </div>
+
+         <script src="ilmoitus.js"></script>
+    <script>
+        // 1. Vuosiluku alatunnisteeseen
+        if (document.getElementById('year')) {
+            document.getElementById('year').textContent = new Date().getFullYear();
+        }
+
+        // 2. Mobiilivalikko
+        const mobileToggle = document.getElementById('mobileToggle');
+        const navMenu = document.getElementById('navMenu');
+
+        if (mobileToggle && navMenu) {
+            mobileToggle.addEventListener('click', () => {
+                navMenu.classList.toggle('open');
+            });
+
+            navMenu.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    navMenu.classList.remove('open');
+                });
+            });
+        }
+
+        // 3. Aukioloaikojen automaattinen tarkistus
+        (function() {
+            const aukioloajat = {
+                1: "08:30 - 16:30", // Maanantai
+                2: "08:30 - 16:30", // Tiistai
+                3: "08:30 - 16:30", // Keskiviikko
+                4: "08:30 - 16:30", // Torstai
+                5: "08:00 - 16:00", // Perjantai
+                6: "SULJETTU",      // Lauantai
+                0: "SULJETTU"       // Sunnuntai
+            };
+
+            const tanaan = new Date().getDay();
+            const tulos = aukioloajat[tanaan];
+            
+            const labelEl = document.getElementById("open-label");
+            const hoursEl = document.getElementById("open-hours");
+
+            if (labelEl && hoursEl) {
+                if (tulos === "SULJETTU") {
+                    labelEl.textContent = "SULJETTU TÄNÄÄN";
+                    labelEl.style.borderRight = "none";
+                    labelEl.style.color = "#FF6B6B";
+                    hoursEl.style.display = "none";
+                } else {
+                    labelEl.textContent = "AUKI TÄNÄÄN";
+                    hoursEl.textContent = tulos;
+                }
+            }
+        })();
+
+        // 4. Yläreunan ilmoitus- ja kampanjapalkki (ilmoitus.js)
+        (function() {
+            const bar = document.getElementById('smartTopBar');
+            if (!bar || typeof ILMOITUKSET === 'undefined' || !ILMOITUKSET.length) return;
+
+            let nykyinen = 0;
+            let ajastin;
+            const useita = ILMOITUKSET.length > 1;
+
+            function naytaIlmoitus(indeksi) {
+                nykyinen = (indeksi + ILMOITUKSET.length) % ILMOITUKSET.length;
+                const item = ILMOITUKSET[nykyinen];
+
+                bar.style.display = 'block';
+                bar.style.background = item.tausta || '#18191B';
+                bar.style.color = item.tekstiVari || '#FFFFFF';
+
+                const badgeHtml = item.badge
+                    ? `<span class="smart-bar-badge" style="background-color: ${item.badgeTausta || '#FFED00'}; color: ${item.badgeTeksti || '#111111'};">${item.badge}</span>`
+                    : '';
+
+                const nappiHtml = item.nappiTeksti
+                    ? `<a href="${item.linkki || '#'}" ${item.linkki && item.linkki.startsWith('http') ? 'target="_blank" rel="noopener noreferrer"' : ''} class="smart-bar-btn" style="background-color: ${item.nappiTausta || '#FFED00'}; color: ${item.nappiTekstiVari || '#111111'};">${item.nappiTeksti}</a>`
+                    : '';
+
+                bar.innerHTML = `
+                    <div class="smart-bar-inner">
+                        ${useita ? '<button class="smart-bar-arrow" id="barPrev" aria-label="Edellinen">&#8249;</button>' : ''}
+                        <div class="smart-bar-content">
+                            ${badgeHtml}
+                            <span class="smart-bar-text">${item.teksti}</span>
+                            ${nappiHtml}
+                        </div>
+                        ${useita ? '<button class="smart-bar-arrow" id="barNext" aria-label="Seuraava">&#8250;</button>' : ''}
+                    </div>
+                `;
+
+                if (useita) {
+                    document.getElementById('barPrev').onclick = () => {
+                        naytaIlmoitus(nykyinen - 1);
+                        nollaaAjastin();
+                    };
+                    document.getElementById('barNext').onclick = () => {
+                        naytaIlmoitus(nykyinen + 1);
+                        nollaaAjastin();
+                    };
+                }
+            }
+
+            function nollaaAjastin() {
+                clearInterval(ajastin);
+                if (useita) {
+                    const viive = (typeof RULLAUS_NOPEUS_SEK !== 'undefined' ? RULLAUS_NOPEUS_SEK : 5) * 1000;
+                    ajastin = setInterval(() => naytaIlmoitus(nykyinen + 1), viive);
+                }
+            }
+
+            bar.addEventListener('mouseenter', () => clearInterval(ajastin));
+            bar.addEventListener('mouseleave', nollaaAjastin);
+
+            naytaIlmoitus(0);
+            nollaaAjastin();
+        })();
+    </script>
+</body>
+</html>
