@@ -237,26 +237,26 @@
             flex-direction: column;
         }
 
-      /* Esikatselulaatikko kortin yläosassa */
-.asset-preview {
-  height: 220px;             /* Riittävä korkeus, jotta logot näkyvät isoina */
+ .asset-preview {
+  height: 180px;             /* Pitää kortin siistinä, ei liian korkeana */
   width: 100%;
-  padding: 20px;             /* Sopiva hengitysvara reunoille, ei liian iso */
+  padding: 15px;
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: hidden;
+  overflow: hidden;          /* Leikkaa ylimääräiset tyhjät reunat pois */
   box-sizing: border-box;
 }
 
-/* Itse logo/kuva laatikon sisällä */
 .asset-preview img {
-  width: 100%;               /* Skaalaa pienetkin kuvat täyttämään leveyttä */
-  height: 100%;              /* Skaalaa pystysuunnassa laatikkoon sopivaksi */
-  max-width: 85%;            /* Jättää siistin marginaalin sivuille */
-  max-height: 160px;         /* Estää logoa osumasta aivan ylä- ja alareunaan */
-  object-fit: contain;       /* Pitää kuvasuhteen täydellisenä eikä leikkaa kuvaa */
+  width: 90% !important;
+  height: 90% !important;
+  max-width: none !important;
+  max-height: none !important;
+  object-fit: contain;
+  transform: scale(1.25);    /* Suurentaa kuvaa 25 % ja poistaa tyhjät reunat */
 }
+
 
         .bg-light {
             background-color: #F8F9FA;
