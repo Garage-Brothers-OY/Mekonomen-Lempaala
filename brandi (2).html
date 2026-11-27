@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Brändi & Mediapankki | Mekonomen Autohuolto Lempäälä</title>
+
+    <style>
+        :root {
+            --meko-yellow: #FFD100;
+            --meko-yellow-hover: #e6bc00;
+            --meko-black: #111111;
+            --meko-dark: #1E1E1E;
+            --meko-gray: #F4F5F7;
+            --meko-border: #E2E4E8;
+            --text-main: #1A1A1A;
+            --text-muted: #555555;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            color: var(--text-main);
+            background-color: #FFFFFF;
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, h4, .brand-font {
+            font-family: "Arial Black", "Segoe UI", Impact, sans-serif;
+            letter-spacing: -0.3px;
+        }
+
+        /* --- YLÄPALKKI --- */
+        .top-bar {
+            background-color: var(--meko-black);
+            color: #FFFFFF;
+            font-size: 0.85rem;
+            padding: 8px 20px;
+        }
+
+        .top-bar-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .top-bar span {
+            color: var(--meko-yellow);
+            font-weight: 600;
+        }
+
+        header {
+            background-color: #FFFFFF;
+            border-bottom: 1px solid var(--meko-border);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            color: var(--meko-black);
+        }
+
+        .logo-badge {
+            background-color: var(--meko-yellow);
+            color: var(--meko-black);
+            font-family: "Arial Black", sans-serif;
+            font-weight: 900;
+            font-size: 1.25rem;
+            padding: 4px 12px;
+            border-radius: 4px;
+            letter-spacing: -0.5px;
+        }
+
+        .logo-location {
+            font-family: "Arial Black", sans-serif;
+            font-weight: 900;
+            font-size: 1.05rem;
+            border-left: 3px solid var(--meko-yellow);
+            padding-left: 12px;
+            text-transform: uppercase;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 24px;
+            align-items: center;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text-main);
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: color 0.2s;
+        }
+
+        nav a:hover {
+            color: #000000;
+            text-decoration: underline;
+            text-decoration-color: var(--meko-yellow);
+            text-decoration-thickness: 3px;
+        }
+
+        .btn-cta {
+            background-color: var(--meko-yellow);
+            color: var(--meko-black) !important;
+            padding: 10px 20px;
+            border-radius: 6px;
+            font-weight: 700;
+            text-decoration: none !important;
+            transition: background-color 0.2s;
+            display: inline-block;
+        }
+
+        .btn-cta:hover {
+            background-color: var(--meko-yellow-hover);
+        }
+
+        /* --- HERO / BRÄNDIOTSIKKO --- */
+        .brand-hero {
+            background-color: var(--meko-black);
+            color: #FFFFFF;
+            padding: 60px 20px;
+            border-bottom: 5px solid var(--meko-yellow);
+        }
+
+        .brand-hero-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .badge-pill {
+            display: inline-block;
+            background-color: rgba(255, 209, 0, 0.15);
+            color: var(--meko-yellow);
+            border: 1px solid var(--meko-yellow);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            margin-bottom: 16px;
+            text-transform: uppercase;
+        }
+
+        .hero-box-title {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 0;
+            margin-bottom: 20px;
+        }
+
+        .box-yellow {
+            background-color: var(--meko-yellow);
+            color: var(--meko-black);
+            font-family: "Arial Black", Impact, sans-serif;
+            font-weight: 900;
+            font-size: clamp(1.5rem, 3.8vw, 2.5rem);
+            padding: 10px 22px;
+            text-transform: uppercase;
+        }
+
+        .box-white {
+            background-color: #FFFFFF;
+            color: var(--meko-black);
+            font-family: "Arial Black", Impact, sans-serif;
+            font-weight: 900;
+            font-size: clamp(1.5rem, 3.8vw, 2.5rem);
+            padding: 10px 22px;
+            text-transform: uppercase;
+        }
+
+        .brand-hero p {
+            max-width: 680px;
+            color: #CCCCCC;
+            font-size: 1.05rem;
+        }
+
+        /* --- PÄÄSISÄLTÖ --- */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+
+        .section-header {
+            margin-bottom: 32px;
+            border-left: 5px solid var(--meko-yellow);
+            padding-left: 16px;
+        }
+
+        .section-header h2 {
+            font-size: 1.7rem;
+            color: var(--meko-black);
+        }
+
+        .section-header p {
+            color: var(--text-muted);
+            margin-top: 4px;
+        }
+
+        /* --- LOGOKORTIT --- */
+        .logo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 24px;
+            margin-bottom: 60px;
+        }
+
+        .logo-card {
+            border: 1px solid var(--meko-border);
+            border-radius: 10px;
+            overflow: hidden;
+            background: #FFFFFF;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .logo-preview {
+            height: 210px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 30px;
+            position: relative;
+        }
+
+        .bg-light-checker {
+            background-color: #F8F9FA;
+            background-image: radial-gradient(#D1D5DB 1px, transparent 1px);
+            background-size: 16px 16px;
+        }
+
+        .bg-dark-preview {
+            background-color: var(--meko-black);
+        }
+
+        .bg-yellow-preview {
+            background-color: var(--meko-yellow);
+        }
+
+        .logo-preview img {
+            max-width: 85%;
+            max-height: 120px;
+            object-fit: contain;
+        }
+
+        .placeholder-box {
+            border: 2px dashed #888;
+            padding: 16px 24px;
+            font-family: "Arial Black", sans-serif;
+            font-weight: 900;
+            font-size: 1.15rem;
+            text-align: center;
+            border-radius: 6px;
+        }
+
+        .logo-info {
+            padding: 20px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .logo-info h3 {
+            font-size: 1.1rem;
+            margin-bottom: 6px;
+        }
+
+        .logo-info p {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-bottom: 18px;
+        }
+
+        .download-buttons {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .btn-dl {
+            flex: 1;
+            text-align: center;
+            padding: 10px 14px;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: 1px solid var(--meko-black);
+            display: inline-block;
+        }
+
+        .btn-dl-primary {
+            background-color: var(--meko-black);
+            color: #FFFFFF;
+        }
+
+        .btn-dl-primary:hover {
+            background-color: #333333;
+        }
+
+        .btn-dl-secondary {
+            background-color: #FFFFFF;
+            color: var(--meko-black);
+        }
+
+        .btn-dl-secondary:hover {
+            background-color: var(--meko-gray);
+        }
+
+        /* --- BRÄNDIVÄRIT --- */
+        .color-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            margin-bottom: 60px;
+        }
+
+        .color-card {
+            border: 1px solid var(--meko-border);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .color-swatch {
+            height: 110px;
+            width: 100%;
+        }
+
+        .color-details {
+            padding: 16px;
+        }
+
+        .color-details h4 {
+            font-size: 1rem;
+            margin-bottom: 8px;
+        }
+
+        .color-code {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: var(--meko-gray);
+            padding: 6px 10px;
+            border-radius: 4px;
+            font-family: monospace;
+            font-size: 0.9rem;
+            margin-bottom: 6px;
+            cursor: pointer;
+        }
+
+        .color-code:hover {
+            background: #E5E7EB;
+        }
+
+        /* --- OHJEISTUS --- */
+        .guidelines-box {
+            background-color: var(--meko-gray);
+            border-radius: 10px;
+            padding: 30px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+        }
+
+        .guide-item h4 {
+            margin-bottom: 8px;
+            font-size: 1.05rem;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background-color: var(--meko-black);
+            color: #CCCCCC;
+            padding: 60px 20px 30px;
+            font-size: 0.9rem;
+        }
+
+        .footer-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        footer h4 {
+            color: #FFFFFF;
+            margin-bottom: 16px;
+            font-size: 1.05rem;
+        }
+
+        footer ul {
+            list-style: none;
+        }
+
+        footer li {
+            margin-bottom: 8px;
+        }
+
+        footer a {
+            color: #CCCCCC;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            color: var(--meko-yellow);
+        }
+
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 0 auto;
+            border-top: 1px solid #333333;
+            padding-top: 20px;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 10px;
+            font-size: 0.85rem;
+            color: #888888;
+        }
+
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Yläpalkki -->
+    <div class="top-bar">
+        <div class="top-bar-inner">
+            <div>Varaosilla <span>3 vuoden takuu</span> • Uuden auton takuu säilyy • Kaikki automerkit</div>
+            <div>Soita / WhatsApp: <span>050 476 8769</span></div>
+        </div>
+    </div>
+
+    <!-- Navigaatio -->
+    <header>
+        <div class="nav-container">
+            <a href="index.html" class="logo-area">
+                <span class="logo-badge">Mekonomen</span>
+                <span class="logo-location">Lempäälä</span>
+            </a>
+            <nav>
+                <ul>
+                    <li><a href="index.html#palvelut">Palvelut</a></li>
+                    <li><a href="index.html#rahoitus">Rahoitus</a></li>
+                    <li><a href="index.html#tietoa">Tietoa meistä</a></li>
+                    <li><a href="index.html#yhteystiedot">Yhteystiedot</a></li>
+                    <li><a href="index.html#varaa" class="btn-cta">Varaa huolto</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero-otsikko -->
+    <section class="brand-hero">
+        <div class="brand-hero-inner">
+            <div class="badge-pill">Henkilökunnalle & Markkinointiin</div>
+            <div class="hero-box-title">
+                <div class="box-yellow">MEKONOMEN LEMPÄÄLÄ</div>
+                <div class="box-white">BRÄNDI & LOGOT</div>
+            </div>
+            <p>Viralliset täyslaatuiset logoversiot, värikoodit ja graafinen ohjeisto mainostoimistoille, yhteistyökumppaneille sekä Garage Brothers Oy:n sisäiseen käyttöön.</p>
+        </div>
+    </section>
+
+    <!-- Pääsisältö -->
+    <main class="container">
+        
+        <!-- 1. Logoversiot -->
+        <div class="section-header">
+            <h2>Viralliset logoversiot (Täyslaatu)</h2>
+            <p>Lataa suoraan käyttövalmis tiedosto: <strong>PNG</strong> (läpinäkyvä tausta toimisto-ohjelmiin ja verkkoon) tai <strong>SVG</strong> (vektori painotuotteisiin ja teippauksiin).</p>
+        </div>
+
+        <div class="logo-grid">
+            
+            <!-- KORTTI 1: Päälogo vaalealle taustalle -->
+            <!-- OHJE: Kun tallennat tiedostot GitHubin 'media/'-kansioon, korvaa placeholder-box <img>-tagilla:
+                 <img src="media/mekonomen-logo-vaalea.svg" alt="Mekonomen Päälogo"> -->
+            <div class="logo-card">
+                <div class="logo-preview bg-light-checker">
+                    <div class="placeholder-box" style="color: #111111; border-color: #111111; background: #FFD100;">
+                        MEKONOMEN<br><span style="font-size:0.75rem;">PÄÄLOGO (VAALEA TAUSTA)</span>
+                    </div>
+                </div>
+                <div class="logo-info">
+                    <div>
+                        <h3>Mekonomen Päälogo (Vaalea tausta)</h3>
+                        <p>Ensisijainen logo valkoiselle tai vaalealle taustalle.</p>
+                    </div>
+                    <div class="download-buttons">
+                        <a href="media/mekonomen-logo-vaalea.svg" download="Mekonomen-Logo-Vaalea.svg" class="btn-dl btn-dl-primary">Lataa SVG (Vektori)</a>
+                        <a href="media/mekonomen-logo-vaalea.png" download="Mekonomen-Logo-Vaalea.png" class="btn-dl btn-dl-secondary">Lataa PNG (HD)</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- KORTTI 2: Logo tummalle taustalle -->
+            <div class="logo-card">
+                <div class="logo-preview bg-dark-preview">
+                    <div class="placeholder-box" style="color: #FFD100; border-color: #FFD100;">
+                        MEKONOMEN<br><span style="color:#FFF; font-size:0.75rem;">LEMPÄÄLÄ (TUMMA TAUSTA)</span>
+                    </div>
+                </div>
+                <div class="logo-info">
+                    <div>
+                        <h3>Logo tummalle taustalle</h3>
+                        <p>Käytetään mustalla tai tummalla valokuvataustalla (esim. työvaatteet, some).</p>
+                    </div>
+                    <div class="download-buttons">
+                        <a href="media/mekonomen-lempaala-tumma.svg" download="Mekonomen-Lempaala-Tumma.svg" class="btn-dl btn-dl-primary">Lataa SVG (Vektori)</a>
+                        <a href="media/mekonomen-lempaala-tumma.png" download="Mekonomen-Lempaala-Tumma.png" class="btn-dl btn-dl-secondary">Lataa PNG (HD)</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- KORTTI 3: Paikallinen toimipistelogo -->
+            <div class="logo-card">
+                <div class="logo-preview bg-yellow-preview">
+                    <div class="placeholder-box" style="color: #111111; border-color: #111111;">
+                        MEKONOMEN LEMPÄÄLÄ<br><span style="font-size:0.75rem;">GARAGE BROTHERS OY</span>
+                    </div>
+                </div>
+                <div class="logo-info">
+                    <div>
+                        <h3>Paikallinen toimipistelogo</h3>
+                        <p>Mekonomen Autohuolto Lempäälä -tunnus paikallismarkkinointiin ja tapahtumiin.</p>
+                    </div>
+                    <div class="download-buttons">
+                        <a href="media/mekonomen-lempaala-paikallinen.svg" download="Mekonomen-Lempaala-Paikallinen.svg" class="btn-dl btn-dl-primary">Lataa SVG (Vektori)</a>
+                        <a href="media/mekonomen-lempaala-paikallinen.png" download="Mekonomen-Lempaala-Paikallinen.png" class="btn-dl btn-dl-secondary">Lataa PNG (HD)</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- 2. Brändivärit -->
+        <div class="section-header">
+            <h2>Brändivärit</h2>
+            <p>Klikkaa värikoodia kopioidaksesi sen leikepöydälle.</p>
+        </div>
+
+        <div class="color-grid">
+            <div class="color-card">
+                <div class="color-swatch" style="background-color: #FFD100;"></div>
+                <div class="color-details">
+                    <h4>Mekonomen Keltainen</h4>
+                    <div class="color-code" onclick="copyColor('#FFD100', this)"><span>HEX: #FFD100</span><span>Kopioi</span></div>
+                    <div class="color-code" onclick="copyColor('rgb(255, 209, 0)', this)"><span>RGB: 255, 209, 0</span><span>Kopioi</span></div>
+                </div>
+            </div>
+
+            <div class="color-card">
+                <div class="color-swatch" style="background-color: #111111;"></div>
+                <div class="color-details">
+                    <h4>Syvä Musta</h4>
+                    <div class="color-code" onclick="copyColor('#111111', this)"><span>HEX: #111111</span><span>Kopioi</span></div>
+                    <div class="color-code" onclick="copyColor('rgb(17, 17, 17)', this)"><span>RGB: 17, 17, 17</span><span>Kopioi</span></div>
+                </div>
+            </div>
+
+            <div class="color-card">
+                <div class="color-swatch" style="background-color: #FFFFFF; border-bottom: 1px solid #eee;"></div>
+                <div class="color-details">
+                    <h4>Puhdas Valkoinen</h4>
+                    <div class="color-code" onclick="copyColor('#FFFFFF', this)"><span>HEX: #FFFFFF</span><span>Kopioi</span></div>
+                    <div class="color-code" onclick="copyColor('rgb(255, 255, 255)', this)"><span>RGB: 255, 255, 255</span><span>Kopioi</span></div>
+                </div>
+            </div>
+
+            <div class="color-card">
+                <div class="color-swatch" style="background-color: #F4F5F7;"></div>
+                <div class="color-details">
+                    <h4>Taustaharmaa</h4>
+                    <div class="color-code" onclick="copyColor('#F4F5F7', this)"><span>HEX: #F4F5F7</span><span>Kopioi</span></div>
+                    <div class="color-code" onclick="copyColor('rgb(244, 245, 247)', this)"><span>RGB: 244, 245, 247</span><span>Kopioi</span></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 3. Käyttöohjeistus -->
+        <div class="section-header">
+            <h2>Lyhyt käyttöohjeistus</h2>
+            <p>Varmista yhtenäinen ilme kaikissa kanavissa.</p>
+        </div>
+
+        <div class="guidelines-box">
+            <div class="guide-item">
+                <h4>Suoja-alue</h4>
+                <p>Jätä logon ympärille aina vähintään M-kirjaimen korkuinen tyhjä tila, jotta logo erottuu selkeästi muista elementeistä.</p>
+            </div>
+            <div class="guide-item">
+                <h4>Älä muokkaa</h4>
+                <p>Älä koskaan venytä logoa, muuta sen mittasuhteita, lisää varjostuksia tai vaihda brändivärejä muihin sävyihin.</p>
+            </div>
+            <div class="guide-item">
+                <h4>Typografia</h4>
+                <p>Otsikoissa käytetään vahvaa, paksua sans-serif-otsikkofonttia ja leipätekstissä selkeää järjestelmäfonttia.</p>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-grid">
+            <div>
+                <h4>Mekonomen</h4>
+                <p style="margin-bottom: 10px;"><strong>Autohuolto Lempäälä • Garage Brothers Oy</strong></p>
+                <p>Kuulumme Pohjoismaiden suurimpaan autokorjaamoketjuun. Huollamme ja korjaamme kaikki automerkit ammattitaidolla sekä 3 vuoden varaosatakuulla.</p>
+            </div>
+            <div>
+                <h4>Valikko</h4>
+                <ul>
+                    <li><a href="index.html">Etusivu</a></li>
+                    <li><a href="index.html#palvelut">Huolto- ja korjaamopalvelut</a></li>
+                    <li><a href="index.html#rahoitus">Mekonomen Rahoitus</a></li>
+                    <li><a href="index.html#tietoa">Tietoa meistä</a></li>
+                    <li><a href="index.html#yhteystiedot">Yhteystiedot ja aukioloajat</a></li>
+                    <li><a href="brandi.html" style="color: var(--meko-yellow);">Brändi & Mediapankki</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Palvelut</h4>
+                <ul>
+                    <li><a href="index.html#palvelut">Määräaikaishuollot</a></li>
+                    <li><a href="index.html#palvelut">Öljynvaihtohuollot</a></li>
+                    <li><a href="index.html#palvelut">Ilmastointihuollot</a></li>
+                    <li><a href="index.html#palvelut">Jarru- ja alustatyöt</a></li>
+                    <li><a href="index.html#palvelut">Rengashotelli ja rengastyöt</a></li>
+                    <li><a href="index.html#palvelut">Vianetsintä ja diagnostiikka</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Yhteystiedot</h4>
+                <ul>
+                    <li><strong>Garage Brothers Oy</strong></li>
+                    <li>Ruokosmetsänkatu 13 A, 37570 Lempäälä</li>
+                    <li>Puh: 050 476 8769 (WhatsApp)</li>
+                    <li>Sähköposti: huolto@garagebrothers.info</li>
+                    <li>Avoinna: ma–to 8.30–16.30, pe 8.00–16.00</li>
+                    <li>Y-tunnus: 3253828-6</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div>© Garage Brothers Oy | Mekonomen Autohuolto Lempäälä</div>
+            <div>Varaosilla jopa 3 vuoden takuu • Uuden auton tehdastakuu säilyy</div>
+        </div>
+    </footer>
+
+    <script>
+        function copyColor(code, element) {
+            navigator.clipboard.writeText(code).then(() => {
+                const badge = element.querySelector('span:last-child');
+                const originalText = badge.innerText;
+                badge.innerText = "Kopioitu!";
+                badge.style.fontWeight = "bold";
+                setTimeout(() => {
+                    badge.innerText = originalText;
+                    badge.style.fontWeight = "normal";
+                }, 1500);
+            });
+        }
+    </script>
+</body>
+</html>
